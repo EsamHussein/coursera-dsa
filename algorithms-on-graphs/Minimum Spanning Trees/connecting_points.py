@@ -9,9 +9,7 @@ def distance(xi, yi, xj, yj):
 
 def minimum_distance(vertices, adj, weight):
     result = 0.
-    X = set()
-    X.add(0)
-
+    X = {0}
     while len(X) != vertices:
         crossing = set()
         for u in X:
@@ -34,7 +32,7 @@ if __name__ == '__main__':
     adj = [[] for _ in range(n)]
     weight = [[0] * n for _ in range(n)]
     for i in range(n):
-        adj[i] = list(v for v in range(n) if v != i)
+        adj[i] = [v for v in range(n) if v != i]
         for j in range(n):
             if i != j:
                 w = distance(x[i], y[i], x[j], y[j])

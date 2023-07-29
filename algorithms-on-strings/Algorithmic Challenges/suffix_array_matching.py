@@ -3,8 +3,7 @@ import sys
 
 
 def find_occurrences(text, patterns):
-    occs = set()
-    return occs
+    return set()
 
 
 if __name__ == '__main__':

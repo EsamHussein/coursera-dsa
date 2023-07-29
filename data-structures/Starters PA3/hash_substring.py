@@ -21,7 +21,7 @@ def PrecomputeHashes(text, len_pattern, prime, multiplier):
     S = text[len(text) - len_pattern:]
     H[len(text) - len_pattern] = PolyHash(S, prime, multiplier)
     y = 1
-    for i in range(len_pattern):
+    for _ in range(len_pattern):
         y = (y * multiplier) % prime
     for i in range(len(text) - len_pattern - 1, -1, -1):
         H[i] = (multiplier * H[i + 1] + ord(text[i]) -
@@ -30,17 +30,16 @@ def PrecomputeHashes(text, len_pattern, prime, multiplier):
 
 
 def get_occurrences(pattern, text):
-    result = []
     prime = 1610612741
     multiplier = 263
     p_hash = PolyHash(pattern, prime, multiplier)
     H = PrecomputeHashes(text, len(pattern), prime, multiplier)
 
-    for i in range(len(text) - len(pattern) + 1):
-        if (p_hash == H[i]) and (text[i:i + len(pattern)] == pattern):
-            result.append(i)
-
-    return result
+    return [
+        i
+        for i in range(len(text) - len(pattern) + 1)
+        if (p_hash == H[i]) and (text[i : i + len(pattern)] == pattern)
+    ]
 
 
 if __name__ == '__main__':

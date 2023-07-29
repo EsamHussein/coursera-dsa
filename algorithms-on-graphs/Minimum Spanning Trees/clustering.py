@@ -8,10 +8,8 @@ def distance(xi, yi, xj, yj):
 
 
 def clustering(n, adj, weight, k):
-    X = set()
     T = set()
-    X.add(0)
-
+    X = {0}
     while len(X) != n:
         crossing = set()
         for u in X:
@@ -36,7 +34,7 @@ if __name__ == '__main__':
     data = list(map(int, user_input.split()))
     n = data[0]
     data = data[1:]
-    x = data[0:2 * n:2]
+    x = data[:2 * n:2]
     y = data[1:2 * n:2]
     data = data[2 * n:]
     k = data[0]
@@ -44,7 +42,7 @@ if __name__ == '__main__':
     adj = [[] for _ in range(n)]
     weight = [[0] * n for _ in range(n)]
     for i in range(n):
-        adj[i] = list(v for v in range(n) if v != i)
+        adj[i] = [v for v in range(n) if v != i]
         for j in range(n):
             if i != j:
                 w = distance(x[i], y[i], x[j], y[j])

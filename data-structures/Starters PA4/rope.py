@@ -13,10 +13,7 @@ class Rope:
     def process(self, i, j, k):
         substring = self.s[i:j + 1]
         self.s = self.s[:i] + self.s[j + 1:]
-        if k == 0:
-            self.s = substring + self.s
-        else:
-            self.s = self.s[:k] + substring + self.s[k:]
+        self.s = substring + self.s if k == 0 else self.s[:k] + substring + self.s[k:]
 
 
 rope = Rope(sys.stdin.readline().strip())

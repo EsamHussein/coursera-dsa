@@ -20,9 +20,9 @@ def reach(adj, x, y):
 if __name__ == '__main__':
     user_input = input()
     data = list(map(int, user_input.split()))
-    n, m = data[0:2]
+    n, m = data[:2]
     data = data[2:]
-    edges = list(zip(data[0:(2 * m):2], data[1:(2 * m):2]))
+    edges = list(zip(data[:2 * m:2], data[1:(2 * m):2]))
     x, y = data[2 * m:]
     adj = [[] for _ in range(n)]
     x, y = x - 1, y - 1

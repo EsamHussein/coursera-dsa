@@ -13,15 +13,8 @@ def get_majority_element(a):
         else:
             count -= 1
 
-    count = 0
-    for num in a:
-        if num == possible_element:
-            count += 1
-
-    if count > len(a) / 2:
-        return possible_element
-    else:
-        return -1
+    count = sum(1 for num in a if num == possible_element)
+    return possible_element if count > len(a) / 2 else -1
 
 
 if __name__ == '__main__':

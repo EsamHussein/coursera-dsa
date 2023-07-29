@@ -12,8 +12,7 @@ import sys
 
 
 def build_trie(patterns):
-    tree = dict()
-    tree[0] = {}
+    tree = {0: {}}
     index = 1
 
     for pattern in patterns:
@@ -34,4 +33,4 @@ if __name__ == '__main__':
     tree = build_trie(patterns)
     for node in tree:
         for c in tree[node]:
-            print("{}->{}:{}".format(node, tree[node][c], c))
+            print(f"{node}->{tree[node][c]}:{c}")

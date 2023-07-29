@@ -5,10 +5,7 @@ import sys
 def min_dot_product(a, b):
     a.sort()
     b.sort(reverse=True)
-    res = 0
-    for i in range(len(a)):
-        res += a[i] * b[i]
-    return res
+    return sum(a[i] * b[i] for i in range(len(a)))
 
 
 if __name__ == '__main__':

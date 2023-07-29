@@ -39,8 +39,7 @@ class SuffixTree:
 
 def build_suffix_tree(text):
     result = []
-    tree = SuffixTree(text)
-    return tree
+    return SuffixTree(text)
 
 
 def print_out(node):

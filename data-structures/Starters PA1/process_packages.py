@@ -39,17 +39,14 @@ class Buffer:
 
 def ReadRequests(count):
     requests = []
-    for i in range(count):
+    for _ in range(count):
         arrival_time, process_time = map(int, input().strip().split())
         requests.append(Request(arrival_time, process_time))
     return requests
 
 
 def ProcessRequests(requests, buffer):
-    responses = []
-    for request in requests:
-        responses.append(buffer.Process(request))
-    return responses
+    return [buffer.Process(request) for request in requests]
 
 
 def PrintResponses(responses):

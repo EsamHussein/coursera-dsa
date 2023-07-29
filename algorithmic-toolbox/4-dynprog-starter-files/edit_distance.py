@@ -3,7 +3,7 @@ def edit_distance(s, t):
     n = len(s) + 1
     m = len(t) + 1
 
-    D = [[0 for x in range(m)] for x in range(n)]
+    D = [[0 for _ in range(m)] for _ in range(n)]
 
     for i, j in zip(range(n), range(m)):
         D[i][0] = i

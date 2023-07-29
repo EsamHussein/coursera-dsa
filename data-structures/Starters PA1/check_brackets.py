@@ -12,9 +12,7 @@ class Bracket:
             return True
         if self.bracket_type == '{' and c == '}':
             return True
-        if self.bracket_type == '(' and c == ')':
-            return True
-        return False
+        return self.bracket_type == '(' and c == ')'
 
 
 if __name__ == "__main__":

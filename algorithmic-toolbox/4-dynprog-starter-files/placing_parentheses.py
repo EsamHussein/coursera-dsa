@@ -25,8 +25,8 @@ def MinAndMax(M, m, i, j, operators):
 
 def get_maximum_value(digits, operators):
     n = len(digits)
-    m = [[None for x in range(n)] for x in range(n)]
-    M = [[None for x in range(n)] for x in range(n)]
+    m = [[None for _ in range(n)] for _ in range(n)]
+    M = [[None for _ in range(n)] for _ in range(n)]
 
     for i in range(n):
         m[i][i] = digits[i]

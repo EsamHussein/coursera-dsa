@@ -11,7 +11,7 @@ def move_vertex(vertex, src, dst):
 def acyclic(adj):
     finish = []
     current = []
-    set = [x for x in range(len(adj))]
+    set = list(range(len(adj)))
 
     def explore(v):
         move_vertex(v, set, current)
@@ -25,7 +25,7 @@ def acyclic(adj):
         move_vertex(v, current, finish)
         return False
 
-    while len(set) > 0:
+    while set:
         if explore(set[0]):
             return 1
     return 0
@@ -34,9 +34,9 @@ def acyclic(adj):
 if __name__ == '__main__':
     user_input = sys.stdin.read()
     data = list(map(int, user_input.split()))
-    n, m = data[0:2]
+    n, m = data[:2]
     data = data[2:]
-    edges = list(zip(data[0:(2 * m):2], data[1:(2 * m):2]))
+    edges = list(zip(data[:2 * m:2], data[1:(2 * m):2]))
     adj = [[] for _ in range(n)]
     for (a, b) in edges:
         adj[a - 1].append(b - 1)

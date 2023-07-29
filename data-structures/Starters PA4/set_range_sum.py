@@ -95,10 +95,7 @@ def find(root, key):
         last = v
         if v.key == key:
             break
-        if v.key < key:
-            v = v.right
-        else:
-            v = v.left
+        v = v.right if v.key < key else v.left
     root = splay(last)
     return (next, root)
 
@@ -155,9 +152,7 @@ def erase(x):
 def search(x):
     global root
     result, root = find(root, x)
-    if result is None or result.key != x:
-        return None
-    return result.key
+    return None if result is None or result.key != x else result.key
 
 
 def sum(fr, to):
@@ -176,7 +171,7 @@ def sum(fr, to):
 MODULO = 1000000001
 n = int(stdin.readline())
 last_sum_result = 0
-for i in range(n):
+for _ in range(n):
     line = stdin.readline().split()
     if line[0] == '+':
         x = int(line[1])

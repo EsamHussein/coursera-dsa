@@ -11,7 +11,7 @@ class Query:
 
 def read_queries():
     n = int(input())
-    return [Query(input().split()) for i in range(n)]
+    return [Query(input().split()) for _ in range(n)]
 
 
 def write_responses(result):
@@ -37,9 +37,6 @@ def process_queries(queries):
                 contacts[index] = None
             else:
                 response = 'not found'
-                if contacts[index] is not None:
-                    response = contacts[index].name
-                    result.append(response)
         return result
 
 

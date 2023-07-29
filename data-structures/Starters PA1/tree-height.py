@@ -10,13 +10,9 @@ class TreeHeight:
     def read(self):
         self.n = int(sys.stdin.readline())
         self.parent = list(map(int, sys.stdin.readline().split()))
-        self.nodes = {}
+        self.nodes = {i: [] for i in range(self.n)}
         for i in range(self.n):
-            self.nodes[i] = []
-        for i in range(self.n):
-            if self.parent[i] == -1:
-                pass
-            else:
+            if self.parent[i] != -1:
                 self.nodes[self.parent[i]] += [i]
 
     def compute_height(self):
@@ -25,8 +21,7 @@ class TreeHeight:
             root = self.parent.index(-1)
         except ValueError:
             return 0
-        queue = []
-        queue.append(root)
+        queue = [root]
         height = 0
 
         while True:
@@ -38,8 +33,7 @@ class TreeHeight:
                 node = queue[0]
                 queue.pop(0)
                 if self.nodes[node]:
-                    for v in self.nodes[node]:
-                        queue.append(v)
+                    queue.extend(iter(self.nodes[node]))
                 node_count -= 1
 
 
