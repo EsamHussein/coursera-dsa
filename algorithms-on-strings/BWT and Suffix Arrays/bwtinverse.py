@@ -5,11 +5,11 @@ import sys
 def inverse_bwt(bwt):
     last = [(val, idx) for (idx, val) in enumerate(bwt)]
     first = sorted(last)
-    first_to_last = {f: l for f, l in zip(first, last)}
+    first_to_last = dict(zip(first, last))
 
     next = first[0]
     result = ''
-    for i in range(len(bwt)):
+    for _ in range(len(bwt)):
         result += next[0]
         next = first_to_last[next]
 

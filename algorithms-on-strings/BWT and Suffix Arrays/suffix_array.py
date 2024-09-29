@@ -3,18 +3,10 @@ import sys
 
 
 def build_suffix_array(text):
-    result = []
-    suffixes = []
-
-    for i in range(len(text)):
-        suffixes.append((i, text[i:]))
-
+    suffixes = [(i, text[i:]) for i in range(len(text))]
     suffixes = sorted(suffixes, key=lambda t: t[1])
 
-    for i in range(len(suffixes)):
-        result.append(suffixes[i][0])
-
-    return result
+    return [suffixes[i][0] for i in range(len(suffixes))]
 
 
 if __name__ == '__main__':

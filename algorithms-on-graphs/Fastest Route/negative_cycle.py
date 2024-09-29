@@ -33,10 +33,9 @@ def negative_cycle(adj, cost):
 if __name__ == '__main__':
     user_input = sys.stdin.read()
     data = list(map(int, user_input.split()))
-    n, m = data[0:2]
+    n, m = data[:2]
     data = data[2:]
-    edges = list(
-        zip(zip(data[0:(3 * m):3], data[1:(3 * m):3]), data[2:(3 * m):3]))
+    edges = list(zip(zip(data[:3 * m:3], data[1:(3 * m):3]), data[2:(3 * m):3]))
     data = data[3 * m:]
     adj = [[] for _ in range(n)]
     cost = [[] for _ in range(n)]

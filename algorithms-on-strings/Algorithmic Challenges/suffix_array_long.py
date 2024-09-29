@@ -72,7 +72,7 @@ def build_suffix_array(text):
     while length < len_text:
         order = sort_doubled(text, length, order, clss)
         clss = update_classes(order, clss, length)
-        length = length * 2
+        length *= 2
 
     return order
 

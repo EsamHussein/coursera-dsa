@@ -3,8 +3,7 @@ import sys
 
 
 def build_trie(patterns):
-    tree = dict()
-    tree[0] = {}
+    tree = {0: {}}
     index = 1
 
     for pattern in patterns:
@@ -33,14 +32,13 @@ def solve(p, q):
     current = trie[0]
     substring = ""
 
-    while '$' not in current or current == trie[0]:
+    while '$' not in current or current == current:
         for child in current:
             substring += child
             if child not in q:
                 return substring
-            else:
-                current = trie[current[child]]
-                substring = substring[:-1]
+            current = trie[current[child]]
+            substring = substring[:-1]
     return p
 
 

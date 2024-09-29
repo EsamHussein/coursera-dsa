@@ -26,7 +26,7 @@ class AStar:
         for v in self.workset:
             self.d[v] = self.inf
             self.visited[v] = False
-        del self.workset[0:len(self.workset)]
+        del self.workset[:]
 
     # See the explanation of this method in the starter for friend_suggestion
     def visit(self, q, p, v, dist, measure):
@@ -55,12 +55,12 @@ if __name__ == '__main__':
         a, b = readl()
         x[i] = a
         y[i] = b
-    for e in range(m):
+    for _ in range(m):
         u, v, c = readl()
         adj[u - 1].append(v - 1)
         cost[u - 1].append(c)
     t, = readl()
     astar = AStar(n, adj, cost, x, y)
-    for i in range(t):
+    for _ in range(t):
         s, t = readl()
         print(astar.query(s - 1, t - 1))

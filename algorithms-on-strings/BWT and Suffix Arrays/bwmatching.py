@@ -25,18 +25,17 @@ def count_occurrences(pattern, bwt, starts, occ_counts_before):
     top, bottom = 0, len(bwt) - 1
 
     while top <= bottom:
-        if pattern:
-            symbol = pattern[-1]
-            pattern = pattern[:-1]
-            if symbol in bwt[top:bottom + 1]:
-                first_occurence = starts[symbol]
-                top = first_occurence + occ_counts_before[symbol][top]
-                bottom = first_occurence + \
-                    occ_counts_before[symbol][bottom + 1] - 1
-            else:
-                return 0
-        else:
+        if not pattern:
             return bottom - top + 1
+        symbol = pattern[-1]
+        pattern = pattern[:-1]
+        if symbol in bwt[top:bottom + 1]:
+            first_occurence = starts[symbol]
+            top = first_occurence + occ_counts_before[symbol][top]
+            bottom = first_occurence + \
+                occ_counts_before[symbol][bottom + 1] - 1
+        else:
+            return 0
 
 
 if __name__ == '__main__':
@@ -45,12 +44,8 @@ if __name__ == '__main__':
     patterns = sys.stdin.readline().strip().split()
 
     starts, occ_counts_before = preprocess_bwt(bwt)
-    occurrence_counts = []
-    for pattern in patterns:
-        occurrence_counts.append(
-            count_occurrences(
-                pattern,
-                bwt,
-                starts,
-                occ_counts_before))
+    occurrence_counts = [
+        count_occurrences(pattern, bwt, starts, occ_counts_before)
+        for pattern in patterns
+    ]
     print(' '.join(map(str, occurrence_counts)))

@@ -3,8 +3,7 @@ import sys
 
 
 def build_trie(patterns):
-    tree = dict()
-    tree[0] = {}
+    tree = {0: {}}
     index = 1
 
     for pattern in patterns:
@@ -32,19 +31,18 @@ def prefix_trie_matching(text, trie, external_idx):
             return res
         if '$' in current:
             return res
-        if symbol in current:
-            current = trie[current[symbol]]
-            res = external_idx
-            idx += 1
-            if idx < len(text):
-                symbol = text[idx]
-            elif '$' in current:
-                return res
-            else:
-                symbol = '@'
-                res = -1
-        else:
+        if symbol not in current:
             return res if '$' in current else -1
+        current = trie[current[symbol]]
+        res = external_idx
+        idx += 1
+        if idx < len(text):
+            symbol = text[idx]
+        elif '$' in current:
+            return res
+        else:
+            symbol = '@'
+            res = -1
 
 
 def solve(text, n, patterns):
@@ -61,10 +59,7 @@ def solve(text, n, patterns):
 
 text = sys.stdin.readline().strip()
 n = int(sys.stdin.readline().strip())
-patterns = []
-for i in range(n):
-    patterns += [sys.stdin.readline().strip()]
-
+patterns = [sys.stdin.readline().strip() for _ in range(n)]
 ans = solve(text, n, patterns)
 
 sys.stdout.write(' '.join(map(str, ans)) + '\n')

@@ -26,9 +26,6 @@ class DistPreprocessLarge:
         # Positions of nodes in the node ordering
         self.rank = [0] * n
 
-        # Implement preprocessing here
-        pass
-
     def mark_visited(self, x):
         if not self.visited[x]:
             self.visited[x] = True
@@ -92,7 +89,7 @@ if __name__ == '__main__':
     n, m = readl()
     adj = [[[] for _ in range(n)], [[] for _ in range(n)]]
     cost = [[[] for _ in range(n)], [[] for _ in range(n)]]
-    for e in range(m):
+    for _ in range(m):
         u, v, c = readl()
         adj[0][u - 1].append(v - 1)
         cost[0][u - 1].append(c)
@@ -103,6 +100,6 @@ if __name__ == '__main__':
     print("Ready")
     sys.stdout.flush()
     t, = readl()
-    for i in range(t):
+    for _ in range(t):
         s, t = readl()
         print(ch.query(s - 1, t - 1))

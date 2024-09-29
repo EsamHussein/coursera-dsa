@@ -10,19 +10,16 @@ def bipartite(adj):
     partition = [-1] * len(adj)
     partition[0] = 0
 
-    queue = []
-    queue.append(0)
-
+    queue = [0]
     while queue:
         v = queue.pop(0)
         for u in adj[v]:
             if partition[u] == partition[v]:
                 return 0
-            else:
-                if not visited[u]:
-                    visited[u] = True
-                    partition[u] = 1 - partition[v]
-                    queue.append(u)
+            if not visited[u]:
+                visited[u] = True
+                partition[u] = 1 - partition[v]
+                queue.append(u)
 
     return 1
 
@@ -30,9 +27,9 @@ def bipartite(adj):
 if __name__ == '__main__':
     user_input = sys.stdin.read()
     data = list(map(int, user_input.split()))
-    n, m = data[0:2]
+    n, m = data[:2]
     data = data[2:]
-    edges = list(zip(data[0:(2 * m):2], data[1:(2 * m):2]))
+    edges = list(zip(data[:2 * m:2], data[1:(2 * m):2]))
     adj = [[] for _ in range(n)]
     for (a, b) in edges:
         adj[a - 1].append(b - 1)

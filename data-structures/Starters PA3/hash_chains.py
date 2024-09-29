@@ -45,14 +45,13 @@ class QueryProcessor:
             elif query.type == 'add':
                 if query.s not in self.elems[ind]:
                     self.elems[ind] = [query.s] + self.elems[ind]
-            else:
-                if query.s in self.elems[ind]:
-                    self.elems[ind] = [
-                        s for s in self.elems[ind] if s != query.s]
+            elif query.s in self.elems[ind]:
+                self.elems[ind] = [
+                    s for s in self.elems[ind] if s != query.s]
 
     def process_queries(self):
         n = int(input())
-        for i in range(n):
+        for _ in range(n):
             self.process_query(self.read_query())
 
 
